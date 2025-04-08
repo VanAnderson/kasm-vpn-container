@@ -22,7 +22,7 @@ services:
     networks:
       - vpn_net
     restart: unless-stopped
-    entrypoint: ["/config/entrypoint.sh"]
+    entrypoint: ["/bin/sh", "-c", "chmod +x /config/*.sh && /config/entrypoint.sh"]
     environment:
       - DOCKER_MODS=ghcr.io/linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=tinyproxy curl bind-tools
