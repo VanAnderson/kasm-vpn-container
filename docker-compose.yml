@@ -1,0 +1,48 @@
+version: '3'
+
+networks:
+  vpn_net:
+    driver: bridge
+
+services:
+  wireguard:
+    image: linuxserver/wireguard:latest
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    volumes:
+      - ./wireguard:/config
+    ports:
+      - "51820:51820/udp"
+      - "8888:8888/tcp"  # Proxy port
+    networks:
+      - vpn_net
+    restart: unless-stopped
+    entrypoint: ["/config/entrypoint.sh"]
+    environment:
+      - DOCKER_MODS=ghcr.io/linuxserver/mods:universal-package-install
+      - INSTALL_PACKAGES=tinyproxy curl bind-tools
+      - WIREGUARD_CONFIG=
+    healthcheck:
+      test: ["CMD", "pgrep", "tinyproxy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  kasm:
+    image: kasmweb/firefox:1.16.0
+    container_name: kasm_firefox
+    ports:
+      - "6901:6901"
+    environment:
+      - VNC_PW=your_secure_password
+      - VNC_RESOLUTION=1920x1080
+    networks:
+      - vpn_net
+    restart: unless-stopped
+    depends_on:
+      - wireguard

@@ -1,0 +1,61 @@
+[Tue Apr  8 01:26:59 UTC 2025] Running TinyProxy setup...
+[Tue Apr  8 01:26:59 UTC 2025] WARNING: WireGuard routing test failed, attempting to fix...
+[Tue Apr  8 01:26:59 UTC 2025] ERROR: WireGuard interface not found
+[Tue Apr  8 01:27:01 UTC 2025] Installing TinyProxy...
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+v3.21.3-282-g45c2a86a23d [http://dl-cdn.alpinelinux.org/alpine/v3.21/main]
+v3.21.3-278-g701157f6054 [http://dl-cdn.alpinelinux.org/alpine/v3.21/community]
+OK: 25396 distinct packages available
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.21/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.21/community/x86_64/APKINDEX.tar.gz
+(1/12) Installing fstrm (0.6.1-r4)
+(2/12) Installing krb5-conf (1.0-r2)
+(3/12) Installing libcom_err (1.47.1-r1)
+(4/12) Installing keyutils-libs (1.6.3-r4)
+(5/12) Installing libverto (0.3.2-r2)
+(6/12) Installing krb5-libs (1.21.3-r0)
+(7/12) Installing json-c (0.18-r0)
+(8/12) Installing libuv (1.49.2-r0)
+(9/12) Installing libxml2 (2.13.4-r5)
+(10/12) Installing bind-libs (9.18.35-r0)
+(11/12) Installing bind-tools (9.18.35-r0)
+(12/12) Installing tinyproxy (1.11.2-r0)
+Executing tinyproxy-1.11.2-r0.pre-install
+Executing busybox-1.37.0-r12.trigger
+OK: 98 MiB in 101 packages
+[Tue Apr  8 01:27:03 UTC 2025] Starting TinyProxy daemon...
+NOTICE    Apr 08 01:27:03.797 [37]: Initializing tinyproxy ...
+NOTICE    Apr 08 01:27:03.797 [37]: Reloading config file (/etc/tinyproxy/tinyproxy.conf)
+INFO      Apr 08 01:27:03.798 [37]: Added address [0.0.0.0] to listen addresses.
+INFO      Apr 08 01:27:03.798 [37]: Adding Port [80] to the list allowed by CONNECT
+INFO      Apr 08 01:27:03.799 [37]: Adding Port [443] to the list allowed by CONNECT
+INFO      Apr 08 01:27:03.799 [37]: Adding Port [8080] to the list allowed by CONNECT
+NOTICE    Apr 08 01:27:03.800 [37]: Reloading config file finished
+INFO      Apr 08 01:27:03.800 [37]: listen_sock called with addr = '0.0.0.0'
+INFO      Apr 08 01:27:03.801 [37]: trying to listen on host[0.0.0.0], family[2], socktype[1], proto[6]
+INFO      Apr 08 01:27:03.801 [37]: listening on fd [3]
+INFO      Apr 08 01:27:03.801 [37]: Now running as group "nobody".
+INFO      Apr 08 01:27:03.802 [37]: Now running as user "nobody".
+INFO      Apr 08 01:27:03.802 [37]: Setting the various signals.
+INFO      Apr 08 01:27:03.803 [37]: Starting main loop. Accepting connections.
+[Tue Apr  8 01:27:05 UTC 2025] TinyProxy started successfully
+tcp        0      0 0.0.0.0:8888            0.0.0.0:*               LISTEN      -                   
+CONNECT   Apr 08 01:27:05.820 [37]: Connect (file descriptor 4): 127.0.0.1
+CONNECT   Apr 08 01:27:05.821 [37]: Request (file descriptor 4): GET http://www.google.com/ HTTP/1.1
+INFO      Apr 08 01:27:05.821 [37]: No upstream proxy for www.google.com
+INFO      Apr 08 01:27:05.822 [37]: opensock: opening connection to www.google.com:80
+INFO      Apr 08 01:27:05.838 [37]: opensock: getaddrinfo returned for www.google.com:80
+CONNECT   Apr 08 01:27:05.850 [37]: Established connection to host "www.google.com" using file descriptor 5.
+INFO      Apr 08 01:27:05.952 [37]: Closed connection between local client (fd:4) and remote client (fd:5)
+[Tue Apr  8 01:27:05 UTC 2025] Proxy connectivity test PASSED
+
+=========================================================================
+PROXY CONFIGURATION INFO:
+ - Proxy Server: 172.18.0.2
+ - Proxy Port: 8888
+ - WireGuard IP: Unknown
+=========================================================================
+
+NOTICE    Apr 08 01:27:28.654 [37]: Shutting down.
+INFO      Apr 08 01:27:28.655 [37]: trying to bring down 1 threads...
