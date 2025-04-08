@@ -26,7 +26,7 @@ services:
     environment:
       - DOCKER_MODS=ghcr.io/linuxserver/mods:universal-package-install
       - INSTALL_PACKAGES=tinyproxy curl bind-tools
-      - WIREGUARD_CONFIG=
+      - WIREGUARD_CONFIG=${WIREGUARD_CONFIG}
     healthcheck:
       test: ["CMD", "pgrep", "tinyproxy"]
       interval: 30s
